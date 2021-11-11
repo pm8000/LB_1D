@@ -53,7 +53,7 @@ lattice[:,:]=f_eq[:,:]
 
 #plot initial condition
 f=plt.figure(figsize=(5,5))
-plt.plot(u, label='initial condition')
+plt.plot(rho, label='initial condition')
 
 for t in range(nt):
     #advection step
@@ -76,10 +76,9 @@ for t in range(nt):
 
     #plot from time to time
     if (t+1)%nplot==0:
-        plt.plot(u, label=str(t+1)+' time steps')
+        plt.plot(rho, label=str(t+1)+' time steps')
 
-print(u)
 plt.legend(bbox_to_anchor=(1.01,1),loc='upper left', borderaxespad=0)
 plt.xlabel('X')
-plt.ylabel('velocity')
+plt.ylabel('density')
 plt.show()
