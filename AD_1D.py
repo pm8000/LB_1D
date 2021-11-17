@@ -43,9 +43,13 @@ def get_f_eq(f_eq,rho,u,cs,Ma):
     #calculate the equilibrium population
     #passes array f_eq by reference
     #equilibrium populations are calculated for whole lattice
-    f_eq[0,:] = rho[:]/6 * (1 - ((u[:])/(cs**2)) + u[:]**2/(2*cs**4) - u[:]**2/(2*cs**2))
-    f_eq[1,:] = 2/3*rho[:] * (1 - u[:]**2/(2*cs**2))
-    f_eq[2,:] = rho[:]/6 * (1 + ((u[:])/(cs**2)) + u[:]**2/(2*cs**4) - u[:]**2/(2*cs**2))
+    #f_eq[0,:] = rho[:]/6 * (1 - ((u[:])/(cs**2)) + u[:]**2/(2*cs**4) - u[:]**2/(2*cs**2))
+    #f_eq[1,:] = 2/3*rho[:] * (1 - u[:]**2/(2*cs**2))
+    #f_eq[2,:] = rho[:]/6 * (1 + ((u[:])/(cs**2)) + u[:]**2/(2*cs**4) - u[:]**2/(2*cs**2))
+
+    f_eq[0,:] = rho[:]/3 * ((-u[:]-cs**2)/(2*cs**2) + np.sqrt(1 + u[:]**2/cs**2))
+    f_eq[1,:] = 2/3*rho[:]*(2-np.sqrt(1+u[:]**2/cs**2))
+    f_eq[2,:] = rho[:]/3 * ((u[:]-cs**2)/(2*cs**2) + np.sqrt(1 + u[:] ** 2/cs**2))
 
 #initialise populations
 get_f_eq(f_eq, rho, u, cs, Ma)
